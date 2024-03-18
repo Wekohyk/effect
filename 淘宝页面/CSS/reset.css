@@ -1,0 +1,103 @@
+body,p,h1,h2,h3,h4{
+    margin: 0;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img{
+    border: none;
+    /* 跟文字方向对齐 */
+    vertical-align: middle;
+}
+
+a{
+    text-decoration: none;
+    color: #3c3c3c;
+}
+
+i{
+    font-style: normal;
+}
+
+input{
+    margin: 0;
+    padding: 0;
+}
+
+button{
+    /* 去掉醒目 */
+    outline: none;
+}
+
+table{
+    /* 边框模式，解决1px边框，合并的模式 */
+    border-collapse: collapse;
+}
+
+th,td{
+    padding: 0;
+}
+
+body{
+    font: 12px/1.5 tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+    color: #3c3c3c;
+    background-color: #f4f4f4;
+}
+
+/* 清除浮动三件套 */
+.clearfix:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* 左浮动 */
+.fl{
+    float: left;
+}
+
+/* 右浮动 */
+.fr{
+    float: right;
+}
+
+.layer{
+    width: 1190px;
+    margin: 0 auto;
+}
+
+.c4{
+    color: #f40;
+}
+
+.c5{
+    color: #f50;
+}
+
+.c6{
+    color: #8f7afb;
+}
+
+.c7{
+    color: #a8c001;
+}
+
+.mr7{
+    margin-right: 7px;
+}
+
+.mr5{
+    margin-right: 5px;
+}
+
+.mt10{
+    margin-top: 10px;
+}
+
+.mr10{
+    margin-right: 10px;
+}

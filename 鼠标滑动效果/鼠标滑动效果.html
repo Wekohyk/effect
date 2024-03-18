@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+      }
+
+      #canvas {
+        background: #000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <script>
+      var canvas = document.querySelector("#canvas");
+      var context = canvas.getContext("2d");
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      var circleList = []; // 储存变量
+
+      canvas.addEventListener("mousemove", function (e) {
+        // var circle = new Circle(e.clientX, e.clientY);
+        // circle.draw();
+
+        circleList.push(new Circle(e.clientX, e.clientY)); // 将生成的圆全部放入到数组当中
+      });
+
+      function random(min, max) {
+        // 随机一个数字
+        return Math.round(Math.random() * (max - min) + min);
+      }
+
+      function Circle(x, y) {
+        this.x = x;
+        this.y = y;
+        this.vx = (Math.random() - 0.5) * 3; // 随机数-0.5就可以是正直也可以是负值 VX=X轴的速度
+        this.vy = (Math.random() - 0.5) * 3; // 随机数-0.5就可以是正直也可以是负值 VY=Y轴的速度
+        this.color =
+          "rgb(" +
+          random(0, 255) +
+          "," +
+          random(0, 255) +
+          "," +
+          random(0, 255) +
+          ")"; // 随机生成一个颜色
+
+        this.a = 1; // 初始的透明度
+      }
+      Circle.prototype = {
+        draw() {
+          context.beginPath();
+          context.fillStyle = this.color;
+          context.globalAlpha = this.a;
+          context.globalCompositeOperation = "lighter"; // 图形重叠处理
+          context.arc(this.x, this.y, 30, 0, Math.PI * 2);
+          context.fill();
+
+          this.update(); // upData(); 让它动起来
+        },
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          this.a *= 0.98;
+        },
+      };
+
+      function render() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        circleList.forEach(function (ele, i) {
+          ele.draw();
+
+          if (ele.a < 0.05) {
+            circleList.splice(i, 1);
+          }
+        });
+
+        requestAnimationFrame(render); // 关键帧动画
+      }
+
+      render();
+    </script>
+  </body>
+</html>
